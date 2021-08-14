@@ -55,7 +55,22 @@ function getAllMovieTitles(movies) {
  *  //> 96
  */
 //assign the highestscore to the first object in the array
-function getHighestMetascore(movies) {}
+function getHighestMetascore(movies) {
+  if (movies.length === 0) {
+    return 0;
+  }
+  let highestMetascore = movies[0];
+  //loop through the array to compare the first movie object to the others
+  for (let movie of movies) {
+    //if statement for if the current movie score is higher that the current highest score
+    if (Number(movie.metascore) > Number(highestMetascore.metascore)) {
+      highestMetascore = movie;
+    }
+  }
+  return Number(highestMetascore.metascore);
+}
+
+//reassign the highest score
 
 /**
  * getAverageIMDBRating()
@@ -114,7 +129,15 @@ function countByRating(movies) {
       // Toy Story 4
     };
  */
-function findById(movies, id) {}
+function findById(movies, id) {
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    if (movie.imdbID === id) {
+      return movie;
+    }
+  }
+  return null;
+}
 
 /**
  * filterByGenre()
@@ -136,7 +159,18 @@ function findById(movies, id) {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+//we will loop through the movies locating the genre
+//It is case sensentative so we may need to look out for to Uppercase or to Lowercase
+//IF statement to determine if genre matches
+function filterByGenre(movies, genre) {
+  matchedGenre = [];
+  for (let i = 0; i < movies.genre.length; i++) {
+    const currentMovieGenre = movies.genre[i];
+    if (currentMovieGenre.genre === genre) {
+      matchedGenre.push(movies);
+    }
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -157,10 +191,10 @@ function filterByGenre() {}
       },
       {
         // James and the Giant Peach
-      }
+    
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -173,7 +207,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {}
 
 // Do not change anything below this line.
 module.exports = {
